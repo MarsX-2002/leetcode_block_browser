@@ -1,0 +1,48 @@
+{
+  "manifest_version": 3,
+  "name": "LeetCode Lock Browser",
+  "version": "1.0",
+  "description": "Lock your browser until you solve a LeetCode problem",
+  "permissions": [
+    "storage",
+    "tabs",
+    "scripting",
+    "notifications",
+    "alarms"
+  ],
+  "host_permissions": [
+    "https://leetcode.com/*"
+  ],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "action": {
+    "default_popup": "popup.html"
+  },
+  "commands": {
+    "skip-problem": {
+      "suggested_key": {
+        "default": "Ctrl+Shift+S"
+      },
+      "description": "Skip current problem"
+    },
+    "toggle-lock": {
+      "suggested_key": {
+        "default": "Ctrl+Shift+L"
+      },
+      "description": "Toggle browser lock"
+    },
+    "show-hints": {
+      "suggested_key": {
+        "default": "Ctrl+Shift+H"
+      },
+      "description": "Show problem hints"
+    }
+  },
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["content.js"]
+    }
+  ]
+}
